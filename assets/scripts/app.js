@@ -275,6 +275,51 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+// Language detection
+function getLanguageClass(filename) {
+  const extension = filename.split(".").pop().toLowerCase();
+  const map = {
+    js: "javascript",
+    ts: "typescript",
+    jsx: "jsx",
+    tsx: "tsx",
+    py: "python",
+    rb: "ruby",
+    php: "php",
+    java: "java",
+    cs: "csharp",
+    c: "c",
+    cpp: "cpp",
+    h: "c",
+    hpp: "cpp",
+    go: "go",
+    rs: "rust",
+    swift: "swift",
+    kt: "kotlin",
+    html: "html",
+    htm: "html",
+    css: "css",
+    scss: "scss",
+    json: "json",
+    xml: "xml",
+    yaml: "yaml",
+    yml: "yaml",
+    md: "markdown",
+    markdown: "markdown",
+    sql: "sql",
+    sh: "bash",
+    bash: "bash",
+    zsh: "bash",
+    bat: "batch",
+    ps1: "powershell",
+    dockerfile: "docker",
+    makefile: "makefile",
+    txt: "plaintext",
+    log: "plaintext",
+  };
+  return map[extension] || "plaintext";
+}
+
 // ---------- README loader ----------
 async function loadReadme() {
   const { owner, repo } = window.currentRepo;
@@ -328,7 +373,79 @@ async function browsePath(path = "") {
     const data = await res.json();
 
     if (!Array.isArray(data)) {
-      tabContent.innerHTML = `<p>File: <a href="${data.html_url}" target="_blank">${data.name}</a></p>`;
+      const parentPath = path.includes('/') ? path.substring(0, path.lastIndexOf('/')) : '';
+      // Display images
+      const imageExtensions = [
+        "png",
+        "jpg",
+        "jpeg",
+        "gif",
+        "svg",
+        "webp",
+        "bmp",
+        "ico",
+      ];
+      const ext = data.name.split(".").pop().toLowerCase();
+      if (imageExtensions.includes(ext)) {
+        tabContent.innerHTML = `
+        <div class="file-viewer">
+            <div class="file-header">
+                <button class="back-btn" onclick="browsePath('${parentPath}')">Back to files</button>
+                <span class="file-name">${data.name}</span>
+                <span class="file-size">${(data.size / 1024).toFixed(1)} KB</span>
+                <a href="${data.html_url}" target="_blank" class="file-github-link">View on GitHub</a>
+            </div>
+            <img src="${data.download_url}" alt="${data.name}" style="max-width:100%; max-height:70vh; display:block; margin:0 auto;">
+        </div>`;
+        return;
+      }
+      if (data.content && data.encoding === "base64") {
+        try {
+          const bytes = Uint8Array.from(atob(data.content), (c) =>
+            c.charCodeAt(0),
+          );
+          const content = new TextDecoder("utf-8").decode(bytes);
+          const langClass = getLanguageClass(data.name);
+
+          const escaped = escapeHtml(content);
+
+          const pre = document.createElement("pre");
+          const code = document.createElement("code");
+          code.className = `language-${langClass}`;
+          code.textContent = content;
+          pre.appendChild(code);
+
+          Prism.highlightElement(code);
+          const highlightedHTML = pre.innerHTML;
+          tabContent.innerHTML = `
+                <div class="file-viewer">
+                    <div class="file-header">
+                        <button class="back-btn" onclick="browsePath('${parentPath}')">Back to files</button>
+                        <span class="file-name">${data.name}</span>
+                        <span class="file-size">${(data.size / 1024).toFixed(1)} KB</span>
+                        <a href="${data.html_url}" target="_blank" class="file-github-link">View on GitHub</a>
+                    </div>
+                    <pre class="code-container"><code class="language-${langClass}">${escaped}</code></pre>
+                </div>`;
+
+          setTimeout(() => {
+            const codeEl = tabContent.querySelector("code");
+            if (codeEl) Prism.highlightElement(codeEl);
+          }, 0);
+          return;
+        } catch (err) {}
+      }
+
+      tabContent.innerHTML = `
+        <div class="file-viewer">
+            <div class="file-header">
+                <button class="back-btn" onclick="browsePath('${parentPath}')">Back to files</button>
+                <span class="file-name">${data.name}</span>
+                <span class="file-size">${(data.size / 1024).toFixed(1)} KB</span>
+                <a href="${data.html_url}" target="_blank" class="file-github-link">View on GitHub</a>
+            </div>
+            <p class="file-not-available">File content cannot be displayed inline. <a href="${data.html_url}" target="_blank">Open on GitHub</a>.</p>
+        </div>`;
       return;
     }
 

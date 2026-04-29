@@ -1,6 +1,12 @@
 @font-face {
   font-family: "roboto";
-  src: url("../Roboto.ttf");
+  src: url("../fonts/Roboto.ttf");
+  font-weight: 100 900;
+  font-display: fallback;
+}
+@font-face {
+  font-family: "jet";
+  src: url("../fonts/JetBrainsMono.ttf");
   font-weight: 100 900;
   font-display: fallback;
 }
@@ -8,7 +14,6 @@
 *,
 *::before,
 *::after {
-  font-family: "roboto";
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -22,10 +27,10 @@
   color: #fff;
   border: 1px solid rgba(31 35 40 / 15%);
   box-shadow:
-    0 1px 1px 0 rgba(31 35 40 / 4%),
+  0 1px 1px 0 rgba(31 35 40 / 4%),
     0 1px 2px 0 rgba(31 35 40 / 3%);
-}
-.btn-prime:hover {
+  }
+  .btn-prime:hover {
   background: #1c8139;
 }
 .btn-prime:focus {
@@ -36,6 +41,12 @@ body {
   color: #1f2937;
   line-height: 1.7;
   padding: 2rem 1rem;
+}
+body, button, input {
+  font-family: "roboto";
+}
+code[class*=language-], pre[class*=language-] {
+  font-family: "jet"!important;
 }
 .clr-bg {
   background: center / cover no-repeat url("../bg.png");
@@ -482,6 +493,72 @@ body {
   overflow-x: auto;
   font-size: 0.85rem;
   line-height: 1.5;
+}
+
+.file-viewer {
+  margin-top: 0;
+}
+
+.file-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.file-name {
+  font-weight: 600;
+}
+
+.file-size {
+  color: #6b7280;
+}
+
+.file-github-link {
+  margin-left: auto;
+  color: #6366f1;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.file-github-link:hover {
+  text-decoration: underline;
+}
+
+.file-not-available {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+}
+
+.code-container {
+  max-height: 70vh;
+  overflow: auto;
+  border-radius: 8px;
+  background: #f8f9fa;
+  margin-top: 0;
+}
+
+.code-container code {
+  background: transparent !important;
+}
+
+.back-btn {
+    background: none;
+    border: 1px solid #d1d5db;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: #374151;
+    transition: background 0.2s;
+}
+
+.back-btn:hover {
+    background: #f3f4f6;
 }
 
 /* Responsive */
