@@ -72,6 +72,20 @@ switch ($endpoint) {
         $path = $_GET['path'] ?? '';
         $url = "$apiBase/contents/" . ltrim($path, '/');
         break;
+    case 'commits':
+        $page = $_GET['page'] ?? 1;
+        $perPage = $_GET['per_page'] ?? 20;
+        $url = "$apiBase/commits?page=$page&per_page=$perPage";
+        break;
+    case 'commit':
+        $sha = $_GET['sha'] ?? '';
+        if (empty($sha)) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Missing commit SHA']);
+            exit;
+        }
+        $url = "$apiBase/commits/$sha";
+        break;        
     default:
         http_response_code(400);
         echo json_encode(['error' => 'Unknown endpoint']);
@@ -79,14 +93,24 @@ switch ($endpoint) {
 }
 
 $ch = curl_init($url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
+$headers = [
     "User-Agent: GitHub-Downloader-PHP",
     "Authorization: token $token"
-]);
+];
+if ($endpoint === 'commit') {
+    $headers[] = "Accept: application/vnd.github.v3.diff";
+}
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
+
+if ($endpoint === 'commit') {
+    header('Content-Type: text/plain; charset=UTF-8');
+    echo $response;
+    exit;
+}
 
 http_response_code($httpCode);
 echo $response;
