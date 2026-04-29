@@ -11,7 +11,6 @@ A clean, modern web tool to preview any **public** GitHub repository: browse fil
 - **README preview** – rendered Markdown with:
   - GitHub‑flavoured tables, tasklists, strikethrough
   - Emoji shortcodes (`:tada:` → 🎉)
-  - Automatic `dir="auto"` for mixed RTL/LTR content
   - Relative images resolved to `raw.githubusercontent.com`
 - **File & folder browser** – lazy‑loaded tree navigation
 - **Releases** – paginated list of releases with Markdown body, download assets, **@mention linking** and **shortened pull request references** (`#4309`)
@@ -19,7 +18,6 @@ A clean, modern web tool to preview any **public** GitHub repository: browse fil
 - **Contributors** – avatars, usernames, commit counts
 - **Dynamic tabs** – only tabs with actual content are shown (e.g., if a repo has no releases, the tab is hidden)
 - **Error toast** – sleek bottom‑sliding notifications instead of `alert()` popups
-- **Responsive light RTL layout** – fully Persian‑friendly (RTL / Farsi text support)
 - **Secure backend** – GitHub token stays on the server, never exposed to the frontend
 
 ---
