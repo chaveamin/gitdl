@@ -4,8 +4,6 @@ markdown
 
 A clean, modern web tool to preview any **public** GitHub repository: browse files, read the README with full Markdown rendering, explore releases, branches, contributors, and download a ZIP archive – all without leaving the page.
 
-![screenshot](shots/shot1.png)
-
 ---
 
 ## ✨ Features
