@@ -27,6 +27,9 @@ function switchTab(tabName) {
     case "commits":
       loadCommits();
       break;
+    case "community":
+      loadCommunity();
+      break;
     default:
       break;
   }
@@ -49,6 +52,7 @@ function buildTabs(availableTabs) {
     { key: "branches", label: "🌿 Branches" },
     { key: "contributors", label: "👥 Contributors" },
     { key: "commits", label: "🕒 Commits" },
+    { key: "community", label: "🏥 Community" },
   ];
 
   let firstAvailable = null;
@@ -95,6 +99,10 @@ async function checkTabAvailability(owner, repo) {
 
     commits: fetchCommits(owner, repo, 1, 1)
       .then((data) => Array.isArray(data) && data.length > 0)
+      .catch(() => false),
+
+    community: fetchCommunityProfile(owner, repo)
+      .then(() => true)
       .catch(() => false),
   };
 

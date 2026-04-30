@@ -85,7 +85,10 @@ switch ($endpoint) {
             exit;
         }
         $url = "$apiBase/commits/$sha";
-        break;        
+        break;
+    case 'community':
+        $url = "$apiBase/community/profile";
+        break;
     default:
         http_response_code(400);
         echo json_encode(['error' => 'Unknown endpoint']);

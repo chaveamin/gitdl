@@ -586,6 +586,57 @@ pre[class*="language-"] {
   cursor: pointer;
 }
 
+.community-card {
+  padding: 1rem;
+}
+
+.health-bar-container {
+  height: 24px;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.health-bar {
+  height: 100%;
+  background: #10b981;
+  transition: width 0.5s;
+  border-radius: 12px;
+}
+
+.health-percent {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+.community-files {
+  list-style: none;
+  padding: 0;
+}
+
+.community-files li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.community-files li.present {
+  color: var(--text-primary);
+}
+
+.community-files li.missing {
+  color: var(--error-text);
+  background: var(--error-bg);
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+}
+
 /* Responsive */
 @media screen and (max-width: 670px) {
   .search-bar {

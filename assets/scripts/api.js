@@ -53,3 +53,7 @@ function fetchCommits(owner, repo, page = 1, perPage = 20) {
 function fetchCommitDiff(owner, repo, sha) {
   return apiFetch("commit", { owner, repo, sha });
 }
+
+function fetchCommunityProfile(owner, repo) {
+  return apiFetch("community", { owner, repo });
+}
