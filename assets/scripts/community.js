@@ -6,13 +6,11 @@ async function loadCommunity() {
 
   try {
     const profile = await fetchCommunityProfile(owner, repo);
-    console.log("Community profile:", profile);
 
     const percent = profile.health_percentage ?? 0;
     let filesHtml = "";
 
     if (profile.files && typeof profile.files === "object") {
-      // Map the raw API keys to human-readable labels
       const labelMap = {
         code_of_conduct: "Code of Conduct",
         code_of_conduct_file: "Code of Conduct (file)",
@@ -37,9 +35,9 @@ async function loadCommunity() {
             : "None";
 
         filesHtml += `
-                    <li class="${statusClass}">
-                        ${icon} <strong>${label}</strong> – ${linkHtml}
-                    </li>`;
+        <li class="${statusClass}">
+            ${icon} <strong>${label}</strong> – ${linkHtml}
+        </li>`;
       });
 
       filesHtml += "</ul>";
@@ -48,16 +46,16 @@ async function loadCommunity() {
     }
 
     const html = `
-            <div class="community-card">
-                <h2>Community Health</h2>
-                <p>${profile.description || "No description"}</p>
-                <div class="health-bar-container">
-                    <div class="health-bar" style="width:${percent}%"></div>
-                    <span class="health-percent">${percent}%</span>
-                </div>
-                <h3>Files</h3>
-                ${filesHtml}
-            </div>`;
+    <div class="community-card">
+        <h2>Community Health</h2>
+        <p>${profile.description || "No description"}</p>
+        <div class="health-bar-container">
+            <div class="health-bar" style="width:${percent}%"></div>
+            <span class="health-percent">${percent}%</span>
+        </div>
+        <h3>Files</h3>
+        ${filesHtml}
+    </div>`;
     tabContent.innerHTML = html;
   } catch (err) {
     console.error("Community fetch error:", err);
