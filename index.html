@@ -6,45 +6,51 @@
     <title>Git DL</title>
     <meta name="description" content="Preview and download Git repositories" />
     <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="assets/styles/theme.css" />
+    <script src="assets/scripts/theme.js"></script>
     <link rel="stylesheet" href="assets/styles/gitdl.css" />
     <link rel="stylesheet" href="assets/styles/github.css" />
     <link rel="stylesheet" href="assets/styles/prism.css" />
   </head>
   <body>
+    <header class="app-header">
+      <h1>
+        <button
+          id="theme-toggle"
+          onclick="toggleTheme()"
+          aria-label="Toggle theme"
+        ></button>
+      </h1>
+      <h1>
+        <svg
+          width="38"
+          height="38"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g clip-path="url(#clip0_2826_102738)">
+            <path
+              d="M17 22V19.83C16.97 18.42 16.56 17.04 15.83 15.83C19.1 15.48 21.55 12.66 21.44 9.37004C21.42 8.15004 20.98 6.98004 20.19 6.06004L20.11 3.08004C20.1 2.72004 19.92 2.39004 19.63 2.19004C19.34 1.99004 18.97 1.94004 18.63 2.06004L15.43 3.22004C13.54 2.75004 11.57 2.75004 9.67998 3.22004L6.48 2.06004C6.15 1.94004 5.78 1.99004 5.48 2.19004C5.19 2.39004 5.00999 2.72004 4.99999 3.08004L4.92001 6.06004C4.13001 6.99004 3.69001 8.16004 3.67001 9.37004C3.56001 12.66 6.00999 15.48 9.27999 15.83C8.57999 16.98 8.20001 18.29 8.17001 19.63V22"
+              stroke-width="1.7"
+              stroke-linecap="square"
+            />
+            <path
+              d="M2.54999 17.0698C2.54999 18.9098 4.04 20.3998 5.88 20.3998H8.16"
+              stroke-width="1.7"
+              stroke-linecap="square"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_2826_102738">
+              <rect width="24" height="24" fill="black" />
+            </clipPath>
+          </defs>
+        </svg>
+        DL
+      </h1>
+    </header>
     <div class="container">
-      <header class="app-header">
-        <h1>
-          <svg
-            width="38"
-            height="38"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g clip-path="url(#clip0_2826_102738)">
-              <path
-                d="M17 22V19.83C16.97 18.42 16.56 17.04 15.83 15.83C19.1 15.48 21.55 12.66 21.44 9.37004C21.42 8.15004 20.98 6.98004 20.19 6.06004L20.11 3.08004C20.1 2.72004 19.92 2.39004 19.63 2.19004C19.34 1.99004 18.97 1.94004 18.63 2.06004L15.43 3.22004C13.54 2.75004 11.57 2.75004 9.67998 3.22004L6.48 2.06004C6.15 1.94004 5.78 1.99004 5.48 2.19004C5.19 2.39004 5.00999 2.72004 4.99999 3.08004L4.92001 6.06004C4.13001 6.99004 3.69001 8.16004 3.67001 9.37004C3.56001 12.66 6.00999 15.48 9.27999 15.83C8.57999 16.98 8.20001 18.29 8.17001 19.63V22"
-                stroke="black"
-                stroke-width="1.7"
-                stroke-linecap="square"
-              />
-              <path
-                d="M2.54999 17.0698C2.54999 18.9098 4.04 20.3998 5.88 20.3998H8.16"
-                stroke="black"
-                stroke-width="1.7"
-                stroke-linecap="square"
-              />
-            </g>
-            <defs>
-              <clipPath id="clip0_2826_102738">
-                <rect width="24" height="24" fill="black" />
-              </clipPath>
-            </defs>
-          </svg>
-          DL
-        </h1>
-      </header>
-
       <form id="repo-form" class="search-bar">
         <input
           type="text"

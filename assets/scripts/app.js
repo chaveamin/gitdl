@@ -38,8 +38,8 @@ document.getElementById("repo-form").addEventListener("submit", async (e) => {
   } catch (err) {
     showError("Error loading repository data");
     document.getElementById("repo-info").classList.add("hidden");
+    tabsDiv.classList.add("hidden");
     tabContent.classList.add("hidden");
-    tabContent.innerHTML = "";
   } finally {
     showPreloader(false);
   }

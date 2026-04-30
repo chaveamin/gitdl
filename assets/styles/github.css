@@ -44,7 +44,7 @@
   font-weight: 600;
   line-height: 1.25;
   padding-bottom: 0.3em;
-  border-bottom: 1px solid #eaecef;
+  border-bottom: 1px solid var(--border-color);
 }
 .md-github__body h2 {
   font-size: 1.5em;
@@ -189,6 +189,7 @@
 }
 .md-github__body li + li {
   margin-top: 0.25em;
+  color: var(--text-primary);
 }
 .md-github__body table {
   display: block;
@@ -200,16 +201,16 @@
   border-collapse: collapse;
 }
 .md-github__body table tr {
-  background-color: #fff;
+  background-color: var(--md-table);
   border-top: 1px solid #c6cbd1;
 }
 .md-github__body table tr:nth-child(even) {
-  background-color: oklch(96.7% 0.001 286.375);
+  background-color: var(--md-table-row);
 }
 .md-github__body table td,
 .md-github__body table th {
   padding: 6px 13px;
-  border: 1px solid #dfe2e5;
+  border: 1px solid var(--md-table-border);
 }
 .md-github__body table th {
   font-weight: 600;
@@ -226,7 +227,7 @@
 .md-github__body h4,
 .md-github__body h5,
 .md-github__body h6 {
-  color: #1b1f23;
+  color: var(--text-primary);
   vertical-align: middle;
 }
 .md-github__body h1:hover,
@@ -244,4 +245,11 @@
 .md-github__body h5:hover,
 .md-github__body h6:hover {
   visibility: visible;
+}
+
+.folder-icon path {
+  fill: var(--folder-icon);
+}
+.file-icon path {
+  stroke: var(--file-icon);
 }
