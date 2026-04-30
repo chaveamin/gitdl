@@ -30,6 +30,9 @@ function switchTab(tabName) {
     case "community":
       loadCommunity();
       break;
+    case "search":
+      loadSearchTab();
+      break;
     default:
       break;
   }
@@ -53,6 +56,7 @@ function buildTabs(availableTabs) {
     { key: "contributors", label: "👥 Contributors" },
     { key: "commits", label: "🕒 Commits" },
     { key: "community", label: "🏥 Community" },
+    { key: "search", label: "🔍 Search" },
   ];
 
   let firstAvailable = null;
@@ -104,6 +108,8 @@ async function checkTabAvailability(owner, repo) {
     community: fetchCommunityProfile(owner, repo)
       .then(() => true)
       .catch(() => false),
+
+    search: Promise.resolve(true),
   };
 
   const results = {};

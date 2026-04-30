@@ -89,6 +89,42 @@ switch ($endpoint) {
     case 'community':
         $url = "$apiBase/community/profile";
         break;
+    case 'search_code':
+        if (!isset($_GET['query'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Missing search query']);
+            exit;
+        }
+        $page = $_GET['page'] ?? 1;
+        $perPage = $_GET['per_page'] ?? 30;
+        $query = urlencode($_GET['query']);
+        $url = "https://api.github.com/search/code?q=repo:$owner/$repo+$query&page=$page&per_page=$perPage";
+        break;
+
+    case 'search_issues':
+        if (!isset($_GET['query'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Missing search query']);
+            exit;
+        }
+        $page = $_GET['page'] ?? 1;
+        $perPage = $_GET['per_page'] ?? 30;
+        $query = urlencode($_GET['query'] . '+type:issue');
+        $url = "https://api.github.com/search/issues?q=repo:$owner/$repo+$query&page=$page&per_page=$perPage";
+        break;
+
+    case 'search_commits':
+        if (!isset($_GET['query'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'Missing search query']);
+            exit;
+        }
+        $page = $_GET['page'] ?? 1;
+        $perPage = $_GET['per_page'] ?? 30;
+        $query = urlencode($_GET['query']);
+        $url = "https://api.github.com/search/commits?q=repo:$owner/$repo+$query&page=$page&per_page=$perPage";
+        $headers[] = "Accept: application/vnd.github.cloak-preview+json";
+        break;        
     default:
         http_response_code(400);
         echo json_encode(['error' => 'Unknown endpoint']);
@@ -100,6 +136,9 @@ $headers = [
     "User-Agent: GitHub-Downloader-PHP",
     "Authorization: token $token"
 ];
+if ($endpoint === 'search_commits') {
+    $headers[] = "Accept: application/vnd.github.cloak-preview+json";
+}
 if ($endpoint === 'commit') {
     $headers[] = "Accept: application/vnd.github.v3.diff";
 }

@@ -57,3 +57,15 @@ function fetchCommitDiff(owner, repo, sha) {
 function fetchCommunityProfile(owner, repo) {
   return apiFetch("community", { owner, repo });
 }
+
+function searchCode(owner, repo, query, page = 1) {
+  return apiFetch("search_code", { owner, repo, query, page, per_page: 30 });
+}
+
+function searchIssues(owner, repo, query, page = 1) {
+  return apiFetch("search_issues", { owner, repo, query, page, per_page: 30 });
+}
+
+function searchCommits(owner, repo, query, page = 1) {
+  return apiFetch("search_commits", { owner, repo, query, page, per_page: 30 });
+}
