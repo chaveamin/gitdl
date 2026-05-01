@@ -30,7 +30,7 @@ function fetchReadme(owner, repo) {
   return apiFetch("readme", { owner, repo });
 }
 
-function fetchContents(owner, repo, path = encodeURIComponent(path)) {
+function fetchContents(owner, repo, path = "") {
   return apiFetch("contents", { owner, repo, path });
 }
 

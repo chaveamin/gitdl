@@ -52,10 +52,15 @@
     </header>
     <div class="container">
       <form id="repo-form" class="search-bar">
+        <div class="recent-repos">
+          <select id="recent-repos-select">
+            <option value="">📁 Recent…</option>
+          </select>
+        </div>
         <input
           type="text"
           id="repo_url"
-          placeholder="github.com/user/repo"
+          placeholder="github.com/username/repo"
           required
         />
         <button class="btn-prime" type="submit">Fetch</button>
