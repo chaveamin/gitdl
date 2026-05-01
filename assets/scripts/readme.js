@@ -3,6 +3,21 @@ async function loadReadme() {
   tabContent.classList.remove("hidden");
   tabContent.innerHTML = '<div class="preloader">Loading README...</div>';
 
+  const cacheKey = `readme-cache-${owner}-${repo}`;
+
+  try {
+    const cached = sessionStorage.getItem(cacheKey);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      tabContent.innerHTML = parsed.html;
+      return;
+    }
+  } catch (err) {
+    tabContent.classList.add("hidden");
+    showError("Failed to load README");
+  }
+
+  // Fetch and render fresh content
   try {
     const data = await fetchReadme(owner, repo);
 
@@ -21,6 +36,12 @@ async function loadReadme() {
         return match.replace(src, newSrc);
       },
     );
+
+    // Store in sessionStorage
+    try {
+      sessionStorage.setItem(cacheKey, JSON.stringify({ html }));
+    } catch (err) {}
+
     tabContent.innerHTML = html;
   } catch (err) {
     tabContent.classList.add("hidden");
