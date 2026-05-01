@@ -86,7 +86,6 @@ document.getElementById("repo-form").addEventListener("submit", async (e) => {
   showPreloader(true);
 
   const tabsDiv = document.getElementById("tabs");
-  const tabContent = document.getElementById("tab-content");
 
   try {
     const [repoInfo, languagesResult] = await Promise.all([

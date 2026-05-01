@@ -1,3 +1,5 @@
+const tabContent = document.getElementById("tab-content");
+
 async function apiFetch(endpoint, params = {}) {
   let url = `api.php?endpoint=${encodeURIComponent(endpoint)}`;
   for (const [key, value] of Object.entries(params)) {

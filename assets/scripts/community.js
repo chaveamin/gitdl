@@ -1,6 +1,5 @@
 async function loadCommunity() {
   const { owner, repo } = window.currentRepo;
-  const tabContent = document.getElementById("tab-content");
   tabContent.innerHTML =
     '<div class="preloader">Loading community profile...</div>';
 

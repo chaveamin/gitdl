@@ -1,4 +1,3 @@
-const tabContent = document.getElementById("tab-content");
 tabContent.classList.add("hidden");
 
 function switchTab(tabName) {

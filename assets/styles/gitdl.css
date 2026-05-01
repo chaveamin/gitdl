@@ -708,6 +708,20 @@ pre[class*="language-"] {
   appearance: auto;
 }
 
+.file-filter-input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+.file-filter-input:focus {
+  outline: 2px solid var(--accent);
+}
+
 /* Responsive */
 @media screen and (max-width: 670px) {
   .search-bar {

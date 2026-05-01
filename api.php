@@ -1,6 +1,5 @@
 <?php
 header('Content-Type: application/json; charset=UTF-8');
-header('Content-Type: application/json');
 
 function loadEnv($path) {
     if (!file_exists($path)) {
@@ -30,6 +29,8 @@ if (empty($token)) {
     exit;
 }
 
+$cacheFile = null;
+
 $endpoint = $_GET['endpoint'] ?? '';
 if (empty($endpoint)) {
     http_response_code(400);
@@ -40,8 +41,33 @@ if (empty($endpoint)) {
 $owner = $_GET['owner'] ?? '';
 $repo  = $_GET['repo']  ?? '';
 
+// ---- Cache Config ----
+$cacheDir = __DIR__ . '/cache';
+$cacheTTL = 600;
+
+if (!is_dir($cacheDir)) {
+    mkdir($cacheDir, 0700, true);
+}
+
+$cacheableEndpoints = ['info', 'languages', 'readme'];
+
+if (in_array($endpoint, $cacheableEndpoints)) {
+    $cacheKey = md5($_SERVER['QUERY_STRING']);
+    $cacheFile = $cacheDir . '/' . $cacheKey . '.json';
+
+    if (file_exists($cacheFile) && (time() - filemtime($cacheFile)) < $cacheTTL) {
+        header('Content-Type: application/json; charset=UTF-8');
+        readfile($cacheFile);
+        exit;
+    }
+}
+
 $apiBase = "https://api.github.com/repos/$owner/$repo";
 $url = '';
+$headers = [
+    "User-Agent: GitHub-Downloader-PHP",
+    "Authorization: token $token"
+];
 
 switch ($endpoint) {
     case 'info':
@@ -123,7 +149,6 @@ switch ($endpoint) {
         $perPage = $_GET['per_page'] ?? 30;
         $query = urlencode($_GET['query']);
         $url = "https://api.github.com/search/commits?q=repo:$owner/$repo+$query&page=$page&per_page=$perPage";
-        $headers[] = "Accept: application/vnd.github.cloak-preview+json";
         break;        
     default:
         http_response_code(400);
@@ -132,10 +157,6 @@ switch ($endpoint) {
 }
 
 $ch = curl_init($url);
-$headers = [
-    "User-Agent: GitHub-Downloader-PHP",
-    "Authorization: token $token"
-];
 if ($endpoint === 'search_commits') {
     $headers[] = "Accept: application/vnd.github.cloak-preview+json";
 }
@@ -155,4 +176,9 @@ if ($endpoint === 'commit') {
 }
 
 http_response_code($httpCode);
+
+if ($cacheFile !== null && in_array($endpoint, $cacheableEndpoints) && $httpCode === 200) {
+    file_put_contents($cacheFile, $response);
+}
+
 echo $response;

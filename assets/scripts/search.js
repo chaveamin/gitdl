@@ -3,7 +3,6 @@ let currentSearchPage = 1;
 let currentSearchQuery = "";
 
 async function loadSearchTab() {
-  const tabContent = document.getElementById("tab-content");
   tabContent.innerHTML = `
     <i class="search-note">Recently commited codes won't display in search results</i>
     <div class="search-container">
