@@ -118,14 +118,6 @@ To use a different theme colour scheme, edit `assets/css/theme.css` – the vari
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you’d like to change.
 
-### Ideas for future improvements
-
-- OAuth2 login to star / watch / fork repositories directly
-- Diff between any two branches or tags
-- Offline search with client‑side index
-- File download / viewing in binary formats
-- Progressive Web App (PWA) support
-
 ---
 
 ## 📄 License
