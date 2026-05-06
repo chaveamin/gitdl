@@ -12,7 +12,7 @@ Preview **READMEs**, browse **files** with syntax highlighting, explore **releas
 ## ✨ Features
 
 - **📰 Repository overview** – stars, forks, watchers, issues, size, default branch, language, license, topics
-- **🧑‍💻 Language breakdown** – coloured bar + percentage list (filters out <1% languages, uses official GitHub colours)
+- **🧑‍💻 Language breakdown** – coloured bar + percentage list
 - **📄 README preview** – full Markdown rendering
 - **📂 File & folder browser**:
   - **🔃 Filter files by name** with debounced search
