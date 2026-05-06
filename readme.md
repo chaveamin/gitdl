@@ -34,8 +34,8 @@ Preview **READMEs**, browse **files** with syntax highlighting, explore **releas
 
 | Layer               | Technology                                                                                                                        |
 | ------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Backend             | PHP 7.4+ (no database, simple API proxy)                                                                                          |
-| Frontend            | Vanilla JavaScript (ES6+), HTML5, CSS3                                                                                            |
+| Backend             | PHP 7.4+                                                                                          |
+| Frontend            | Vanilla JavaScript, HTML5, CSS3                                                                                            |
 | Markdown rendering  | [markdown-it](https://github.com/markdown-it/markdown-it) + [markdown-it-emoji](https://github.com/markdown-it/markdown-it-emoji) |
 | Syntax highlighting | [Prism.js](https://prismjs.com/) with autoloader                                                                                  |
 | Caching             | Server‑side file cache + client‑side `sessionStorage`                                                                             |
