@@ -24,7 +24,7 @@ Preview **READMEs**, browse **files** with syntax highlighting, explore **releas
 - **🍎 Community health** badge – health percentage bar + list of community files
 - **🔎 Search inside repository** – search for **code**, **issues**, or **commits** with pagination
 - **📑 Dynamic tabs** – only tabs with actual content are shown (e.g., no releases → no “Releases” tab)
-- **👁️ Recent repositories** – dropdown with last 10 visited repos (stored in `localStorage`), with “Clear history” option
+- **👁️ Recent repositories** – dropdown with last 10 visited repos (stored in `localStorage`)
 - **🧹 Server‑side caching** – `/info`, `/languages`, and `/readme` responses cached for 10 minutes to reduce API calls
 - **🕶️ Dark / Light / System theme toggle** – built with CSS custom properties and a **Zinc** colour palette
 
