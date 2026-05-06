@@ -1,6 +1,6 @@
 # 🔍 GitHub Repository Explorer & Downloader
 
-![Made with](https://img.shields.io/badge/made%20with-❤️-red)
+[![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white)](#)
 
 A modern, fully-featured GitHub repository viewer built with **PHP**, vanilla **JavaScript**, and the **GitHub REST API**.  
 Preview **READMEs**, browse **files** with syntax highlighting, explore **releases**, **branches**, **contributors**, **commits**, **community health**, and even **search inside repos** – all with a clean, responsive interface and **dark/light/system theme** support.
