@@ -13,17 +13,11 @@ Preview **READMEs**, browse **files** with syntax highlighting, explore **releas
 
 - **📰 Repository overview** – stars, forks, watchers, issues, size, default branch, language, license, topics
 - **🧑‍💻 Language breakdown** – coloured bar + percentage list (filters out <1% languages, uses official GitHub colours)
-- **📄 README preview** – full Markdown rendering with:
-  - GitHub‑flavoured tables, tasklists, strikethrough
-  - Emoji shortcodes (`:tada:` → 🎉) via `markdown-it-emoji`
-  - Relative images resolved to `raw.githubusercontent.com`
-  - Client‑side caching using `sessionStorage` for instant tab switching
+- **📄 README preview** – full Markdown rendering
 - **📂 File & folder browser**:
   - **🔃 Filter files by name** with debounced search
   - **🎨 Syntax‑highlighted code viewer** (Prism.js + autoloader) for all major languages
-- **📦 Releases** – paginated list with **rendered Markdown body**, download assets, and smart link transformations:
-  - `@username` mentions become clickable GitHub profile links
-  - Full PR URLs (e.g., `https://github.com/owner/repo/pull/4309`) shortened to **`#4309`**
+- **📦 Releases** – paginated list with **rendered Markdown body**, download assets, and smart link transformations
 - **🌿 Branches** – paginated branch list with links to the latest commit
 - **👥 Contributors** – avatars, usernames, and commit counts
 - **🕝 Recent commits** – last 20 commits with author, date, and click‑through **diff viewer** (unified diff)
