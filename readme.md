@@ -21,12 +21,12 @@ Preview **READMEs**, browse **files** with syntax highlighting, explore **releas
 - **🌿 Branches** – paginated branch list with links to the latest commit
 - **👥 Contributors** – avatars, usernames, and commit counts
 - **🕝 Recent commits** – last 20 commits with author, date, and click‑through **diff viewer** (unified diff)
-- **🍎 Community health** badge – health percentage bar + list of community files (code of conduct, contributing guide, license, etc.) with ✅/❌ status
-- **🔎 Search inside repository** – search for **code**, **issues**, or **commits** with pagination (uses GitHub’s powerful search API)
+- **🍎 Community health** badge – health percentage bar + list of community files
+- **🔎 Search inside repository** – search for **code**, **issues**, or **commits** with pagination
 - **📑 Dynamic tabs** – only tabs with actual content are shown (e.g., no releases → no “Releases” tab)
 - **👁️ Recent repositories** – dropdown with last 10 visited repos (stored in `localStorage`), with “Clear history” option
 - **🧹 Server‑side caching** – `/info`, `/languages`, and `/readme` responses cached for 10 minutes to reduce API calls
-- **🕶️ Dark / Light / System theme toggle** – built with CSS custom properties and a **Zinc** colour palette, follows OS preference automatically, choice persisted in `localStorage`
+- **🕶️ Dark / Light / System theme toggle** – built with CSS custom properties and a **Zinc** colour palette
 
 ---
 
